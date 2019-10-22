@@ -5,17 +5,51 @@
 
     <link href='fullcalendar/packages/core/main.css' rel='stylesheet' />
     <link href='fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
+<!--    timegrid link does nothing so far-->
+    <link href='fullcalendar/packages/timegrid/main.css' rel='stylesheet' />
+
 
     <script src='fullcalendar/packages/core/main.js'></script>
     <script src='fullcalendar/packages/daygrid/main.js'></script>
 
+<!--    @fullcalendar/interaction required to detect dateClick actions-->
+    <script src='fullcalendar/packages/interaction/main.js'></script>
+
+
+    <!--    timegrid link does nothing so far-->
+    <link href='fullcalendar/packages/timegrid/main.css' rel='stylesheet' />
+
     <script>
 
       document.addEventListener('DOMContentLoaded', function() {
+
+ /*       var calendar = new Calendar(calendarEl, {
+          dateClick: function() {
+            alert('a day has been clicked!');
+          }
+        });*/
+
         var calendarEl = document.getElementById('calendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
-          plugins: [ 'dayGrid' ]
+
+          dateClick: function() {
+            alert('a day has been clicked!');
+          },
+          plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
+
+
+          // splicing in calendar info from background-events.html
+          header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth, timeGridWeek,timeGridDay,listMonth'
+          },
+          defaultDate: '2019-08-12',
+
+
+
+
         });
 
         calendar.render();
